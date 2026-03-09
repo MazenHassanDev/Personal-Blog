@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="form-card">
+        <h1>Update Article</h1>
+        <form method="post">
+            
+            <input type="text" name="title" placeholder="Article Title" required>
+            <input type="date" name="publishing_date" placeholder="Publishing Date" required>
+            <textarea name="content" placeholder="Content" required></textarea>
+
+            <input type="submit" value="Publish">
+
+        </form>
+    </div>
+{% endblock %}

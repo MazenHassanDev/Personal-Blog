@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "title": "Second Article",
+        "content": "This is the second article",
+        "author": "Mazen",
+        "date": "2004-11-12"
+    },
+    {
+        "id": 2,
+        "title": "Effects of AI",
+        "date": "2026-03-09",
+        "content": "Dont Use AI\r\n\r\nThis blog is about, how the use of Artificial Intelligence will eventually turn on us and overcome the human world.\r\n"
+    }
+]

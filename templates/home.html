@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <div class="nav">
+        <a href="{{ url_for('login') }}">Login</a>
+    </div>
+
+    <div class="home-div">
+        <h1>Personal Blog</h1>
+
+        {% for article in articles %}
+            <div class="article">
+                <h2>
+                    <a href="{{ url_for('article', article_id=article['id']) }}">{{ article['title'] }}</a>
+                    <span class="date">{{ article['date'] | format_date }}</span>
+                </h2>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="form-card">
+        <h1>Update Article</h1>
+        <form method="post">
+            <label>Article Title</label>
+            <input type="text" name="title" value="{{article['title']}}" placeholder="Article Title" required>
+
+            <label>Publishing Date</label>
+            <input type="date" name="publishing_date" value="{{article['date']}}" required>
+
+            <label>Content</label>
+            <textarea name="content" placeholder="Content" required>{{ article['content'] }}</textarea>
+
+            <input type="submit" value="Update">
+
+        </form>
+    </div>
+{% endblock %}
