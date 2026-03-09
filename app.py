@@ -11,7 +11,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.secret_key = 'Mizo121104@'
+app.secret_key = 'c967604496140de3d38bc7b1dcb89343a637a5422c5c64be782b3fdaf25b04c9'
 
 ARTICLES_FILE = os.path.join(os.path.dirname(__file__), 'data/articles.json')
 
