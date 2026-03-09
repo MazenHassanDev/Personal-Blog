@@ -3,6 +3,12 @@ import json
 import os
 from datetime import datetime
 
+
+# ===========================================================================
+# 1) Flask app & File Handling
+# ===========================================================================
+
+
 app = Flask(__name__)
 
 app.secret_key = 'Mizo121104@'
@@ -33,7 +39,10 @@ def save_articles():
     
     with open(ARTICLES_FILE, 'w') as f:
         json.dump(articles, f, indent=4)
-        
+
+
+# DATE FORMATTER
+# ===========================================================================
 @app.template_filter('format_date')
 def format_date(date_str):
     try:
@@ -41,6 +50,11 @@ def format_date(date_str):
         return date.strftime('%B %d, %Y')
     except (ValueError, TypeError):
         return date_str
+
+
+# ===========================================================================
+# MAIN ROUTES
+# ===========================================================================
 
 
 @app.route("/")
@@ -62,6 +76,51 @@ def article(article_id):
         
     return redirect(url_for('home'))
 
+
+# ===========================================================================
+# ADMIN ROUTES
+# ===========================================================================
+
+
+# ADMIN LOGIN & LOGOUT
+# ===========================================================================
+@app.route('/login', methods= ['GET', 'POST'])
+def login():
+
+    if session.get('logged_in'):
+        return redirect(url_for('admin'))
+    
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        if username == 'admin123' and password == 'Admin123':
+            session['logged_in'] = True
+            return redirect(url_for('admin'))
+        else:
+            return render_template('login.html', error='Invalid credentials. Please try again.')
+    
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+
+
+# ADMIN DASHBOARD
+# ===========================================================================
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
+    load_articles()
+    return render_template('admin_dashboard.html', articles=articles)
+
+
+# ADMIN CREATE NEW ARTICLE
+# ===========================================================================
 @app.route('/new', methods=['GET', 'POST'])
 def add_article():
     if not session.get('logged_in'):
@@ -90,10 +149,8 @@ def add_article():
     return render_template('add_article.html')
 
 
-
-    
-
-
+# ADMIN EDIT ARTICLE
+# ===========================================================================
 @app.route('/edit/<int:article_id>', methods=['GET', 'POST'])
 def edit_article(article_id):
     
@@ -119,6 +176,9 @@ def edit_article(article_id):
     
     return render_template('edit_article.html', article=article)
 
+
+# ADMIN DELETE ARTICLE
+# ===========================================================================
 @app.route('/delete/<int:article_id>', methods=['POST'])
 def delete_article(article_id):
     if not session.get('logged_in'):
@@ -134,39 +194,6 @@ def delete_article(article_id):
         return redirect(url_for('admin'))
     
     return redirect(url_for('admin'))
-
-
-@app.route('/login', methods= ['GET', 'POST'])
-def login():
-
-    if session.get('logged_in'):
-        return redirect(url_for('admin'))
-    
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-
-        if username == 'admin123' and password == 'Admin123':
-            session['logged_in'] = True
-            return redirect(url_for('admin'))
-        else:
-            return render_template('login.html', error='Invalid credentials. Please try again.')
-    
-    return render_template('login.html')
-
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
-
-
-@app.route('/admin', methods=['GET', 'POST'])
-def admin():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-
-    load_articles()
-    return render_template('admin_dashboard.html', articles=articles)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
 
-/* ── Reset & Base ─────────────────────────────────────────── */
+/* BASE */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -20,7 +20,7 @@ a {
     color: inherit;
 }
 
-/* ── Card wrapper (used on all pages) ────────────────────── */
+/* CARD (used for al pages) */
 .card {
     background: #fff;
     border: 2px solid #222;
@@ -31,7 +31,7 @@ a {
     margin: 0 auto;
 }
 
-/* ── HOME PAGE ────────────────────────────────────────────── */
+/* HOME */
 .home-div {
     background: #fff;
     border: 2px solid #222;
@@ -89,7 +89,7 @@ a {
     font-family: 'Caveat', cursive;
 }
 
-/* ── ARTICLE PAGE ─────────────────────────────────────────── */
+/* ARTICLE PAGES */
 .article-page {
     background: #fff;
     border: 2px solid #222;
@@ -123,7 +123,7 @@ a {
     color: #333;
 }
 
-/* ── ADMIN DASHBOARD ──────────────────────────────────────── */
+/* ADMIN DASHBOARD */
 .admin-dashboard {
     background: #fff;
     border: 2px solid #222;
@@ -231,7 +231,7 @@ a {
     color: #b52020;
 }
 
-/* ── FORMS (Add / Edit Article) ───────────────────────────── */
+/* FORMS (Add / Edit) */
 .form-card {
     background: #fff;
     border: 2px solid #222;
@@ -251,10 +251,6 @@ a {
     font-weight: 700;
     margin-bottom: 4px;
     color: #111;
-}
-
-.form-card label {
-    display: none; /* labels hidden, placeholders used instead */
 }
 
 .form-card input[type="text"],
@@ -309,7 +305,7 @@ a {
     color: #222;
 }
 
-/* ── LOGIN PAGE ───────────────────────────────────────────── */
+/* LOGIN PAGE */
 .login-form {
     background: #fff;
     border: 2px solid #222;
@@ -393,7 +389,7 @@ a {
     margin-top: -6px;
 }
 
-/* ── Nav / Logout ─────────────────────────────────────────── */
+/* Logout */
 .nav {
     max-width: 420px;
     margin: 0 auto 16px;
